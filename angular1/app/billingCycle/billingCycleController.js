@@ -124,7 +124,25 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
 
     $scope.total = $scope.credit - $scope.debt
   }
+//
+/*  $scope.calculateInvest = function() {
+    $scope.poupanca = 0
+    $scope.selic = 0
+    $scope.tesouro = 0
 
+    if($scope.billingCycle) {
+      $scope.billingCycle.poupanca.forEach(function({value}) {
+        $scope.poupanca += !value || isNaN(value) ? 0 : parseFloat(value)
+      })
+
+      $scope.billingCycle.selic.forEach(function({value}) {
+        $scope.selic += !value || isNaN(value) ? 0 : parseFloat(value)
+      })
+    }
+
+
+  }*/
+//
   var initCreditsAndDebts = function() {
     if(!$scope.billingCycle.debts || !$scope.billingCycle.debts.length) {
       $scope.billingCycle.debts = []
