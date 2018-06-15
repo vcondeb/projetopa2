@@ -4,6 +4,7 @@
       <tr>
         <th>Nome</th>
         <th>Valor</th>
+        <th>Categoria</th>
         <th>Status</th>
         <th>Ações</th>
       </tr>
@@ -17,6 +18,10 @@
         <td>
           <input ng-model="debt.value" class="form-control" placeholder="Informe a Valor"
             ng-readonly="tabDelete" ng-change="calculateValues()" type="number" />
+        </td>
+        <td>
+          <input ng-model="debt.category" class="form-control" placeholder="Informe a Categoria"
+            ng-readonly="tabDelete" />
         </td>
         <td>
           <input ng-model="debt.status" class="form-control" placeholder="Informe o Status"
@@ -35,4 +40,8 @@
       </tr>
     </tbody>
   </table>
+
+  <div>Categorias: LAZER, INVESTIMENTO, ALIMENTAÇÃO, MORADIA</div>
+  <div>Status: PAGO, PENDENTE, AGENDADO</div>
+
 </div>
