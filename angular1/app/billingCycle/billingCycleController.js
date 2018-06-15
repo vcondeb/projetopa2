@@ -10,6 +10,7 @@ angular.module('primeiraApp').controller('BillingCycleCtrl', [
 
 function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
 
+
   $scope.getBillingCycles = function() {
     const page = parseInt($location.search().page) || 1
     const url = `${consts.apiUrl}/billingCycles?skip=${(page - 1) * 10}&limit=10`
@@ -79,7 +80,7 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
   }
 
   $scope.cloneDebt = function(index, {name, value, status}) {
-    $scope.billingCycle.debts.splice(index + 1, 0, {name, value, status})
+    $scope.billingCycle.debts.splice(index + 1, 0, {name, value ,status})
     initCreditsAndDebts()
   }
 
@@ -111,6 +112,28 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
   $scope.calculateValues = function() {
     $scope.credit = 0
     $scope.debt = 0
+    $scope.category = ''
+    $scope.countMoradia = 0
+    $scope.countLazer = 0
+    $scope.countInvestimento = 0
+    $scope.countAlimentacao= 0
+
+
+    if($scope.category = 'MORADIA'){
+      $scope.countMoradia = $scope.countMoradia + 1;
+    }
+
+    if($scope.category = 'LAZER'){
+      $scope.countLazer = $scope.countLazer + 1;
+    }
+
+    if($scope.category = 'ALIMENTACAO'){
+      $scope.countAlimentacao = $scope.countAlimentacao + 1;
+    }
+
+    if($scope.category = 'INVESTIMENTO'){
+      $scope.countInvestimento = $scope.countInvestimento + 1;
+    }
 
     if($scope.billingCycle) {
       $scope.billingCycle.credits.forEach(function({value}) {
@@ -124,25 +147,7 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
 
     $scope.total = $scope.credit - $scope.debt
   }
-//
-/*  $scope.calculateInvest = function() {
-    $scope.poupanca = 0
-    $scope.selic = 0
-    $scope.tesouro = 0
 
-    if($scope.billingCycle) {
-      $scope.billingCycle.poupanca.forEach(function({value}) {
-        $scope.poupanca += !value || isNaN(value) ? 0 : parseFloat(value)
-      })
-
-      $scope.billingCycle.selic.forEach(function({value}) {
-        $scope.selic += !value || isNaN(value) ? 0 : parseFloat(value)
-      })
-    }
-
-
-  }*/
-//
   var initCreditsAndDebts = function() {
     if(!$scope.billingCycle.debts || !$scope.billingCycle.debts.length) {
       $scope.billingCycle.debts = []
